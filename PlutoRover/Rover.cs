@@ -18,7 +18,22 @@ namespace PlutoRover
 
         public void Forwards()
         {
-            position.Y = position.Y + 1;
+            switch (position.CardinalPoint)
+            {
+                case Compass.North:
+                    position.Y = position.Y + 1;
+                    break;
+                case Compass.East:
+                    position.X = position.X + 1;
+                    break;
+                case Compass.South:
+                    position.Y = position.Y - 1;
+                    break;
+                case Compass.West:
+                    position.X = position.X - 1;
+                    break;
+            }
+            
         }
 
         public void Back()

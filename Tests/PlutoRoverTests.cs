@@ -125,5 +125,57 @@ namespace Tests
             Assert.AreEqual(subject.GetPosition().X, 0);
             Assert.AreEqual(subject.GetPosition().Y, 0);
         }
+
+        [Test]
+        public void MovementTests()
+        {
+            //FFRFF
+            subject.Forwards();
+            subject.Forwards();
+            subject.RightTurn();
+            subject.Forwards();
+            subject.Forwards();
+
+            Assert.AreEqual(subject.GetPosition().X, 2);
+            Assert.AreEqual(subject.GetPosition().Y, 2);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.East);
+        }
+
+        [Test]
+        public void CanMoveForwardsInASquareAllDirectionsTurningRight()
+        {
+            //FFR FFR FFRFFRF
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.RightTurn();
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().X, 2);
+            Assert.AreEqual(subject.GetPosition().Y, 2);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.South);
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().Y, 0);
+            Assert.AreEqual(subject.GetPosition().X, 2);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.West);
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().Y, 0);
+            Assert.AreEqual(subject.GetPosition().X, 0);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+
+        }
+
+
     }
 }

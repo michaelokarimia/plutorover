@@ -13,7 +13,7 @@
             this.cardinalPoint = cardinalPoint;
         }
 
-        public int X { get => x; }
+        public int X { get => x; internal set => x = value; }
         public int Y { get => y; internal set => y = value; }
         public Compass CardinalPoint { get => cardinalPoint; internal set => cardinalPoint = value; }
     }
