@@ -64,5 +64,22 @@ namespace Tests
             Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
             Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
         }
+
+
+        [Test]
+        public void RightCommandTurnsRover90DegreesToTheRight()
+        {
+            Position expectedPosistion = new Position(0, 0, Compass.East);
+
+            Assert.AreEqual(subject.GetPosition().X, 0);
+            Assert.AreEqual(subject.GetPosition().Y, 0);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
+            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+        }
     }
 }

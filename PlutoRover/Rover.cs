@@ -25,5 +25,15 @@ namespace PlutoRover
         {
             position.Y = position.Y - 1;
         }
+
+        public void RightTurn()
+        {
+            switch(position.CardinalPoint)
+            {
+                case Compass.North:
+                    position.CardinalPoint = Compass.East;
+                    break;
+            }
+        }
     }
 }

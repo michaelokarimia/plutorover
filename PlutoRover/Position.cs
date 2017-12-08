@@ -15,6 +15,6 @@
 
         public int X { get => x; }
         public int Y { get => y; internal set => y = value; }
-        public Compass CardinalPoint { get => cardinalPoint; }
+        public Compass CardinalPoint { get => cardinalPoint; internal set => cardinalPoint = value; }
     }
 }
