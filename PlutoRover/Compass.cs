@@ -3,6 +3,8 @@
     public enum Compass
     {
         North,
-        East
+        East,
+        South,
+        West,
     }
 }

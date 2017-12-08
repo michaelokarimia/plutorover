@@ -57,7 +57,7 @@ namespace Tests
             Assert.AreEqual(subject.GetPosition().Y, 1);
 
             subject.Back();
-            
+
 
 
             Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
@@ -71,8 +71,6 @@ namespace Tests
         {
             Position expectedPosistion = new Position(0, 0, Compass.East);
 
-            Assert.AreEqual(subject.GetPosition().X, 0);
-            Assert.AreEqual(subject.GetPosition().Y, 0);
             Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
 
             subject.RightTurn();
@@ -80,6 +78,56 @@ namespace Tests
             Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
             Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
             Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+        }
+
+        [Test]
+        public void TwoRightTurnsPointTheRoverToTheSouth()
+        {
+            Position expectedPosistion = new Position(0, 0, Compass.South);
+
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+
+            subject.RightTurn();
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
+            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
+
+        }
+
+        [Test]
+        public void ThreeRightTurnsPointTheRoverToTheWest()
+        {
+            Position expectedPosistion = new Position(0, 0, Compass.West);
+
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+
+            subject.RightTurn();
+            subject.RightTurn();
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
+            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
+
+        }
+
+        [Test]
+        public void FourTurnsRightPointRoverBackToNorth()
+        {
+            Position expectedPosistion = new Position(0, 0, Compass.North);
+
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+
+            subject.RightTurn();
+            subject.RightTurn();
+            subject.RightTurn();
+            subject.RightTurn();
+
+            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
+            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
         }
     }
 }
