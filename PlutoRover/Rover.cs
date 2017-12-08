@@ -4,16 +4,16 @@ namespace PlutoRover
 {
     public class Rover
     {
-        private Position Position;
+        private Position position;
 
         public Rover()
         {
-
+            position = new Position(0, 0, Compass.North);
         }
 
         public Position GetPosition()
         {
-            return this.Position;
+            return position;
         }
     }
 }

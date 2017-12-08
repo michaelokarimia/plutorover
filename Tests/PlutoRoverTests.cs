@@ -24,7 +24,10 @@ namespace Tests
         {
 
             Position expectedPosition = new Position(0, 0, Compass.North);
-            Assert.That(subject.GetPosition(), Is.EqualTo(expectedPosition));
+
+            Assert.That(subject.GetPosition().X, Is.EqualTo(expectedPosition.X));
+            Assert.That(subject.GetPosition().Y, Is.EqualTo(expectedPosition.Y));
+            Assert.That(subject.GetPosition().CardinalPoint, Is.EqualTo(expectedPosition.CardinalPoint));
         }
     }
 }
