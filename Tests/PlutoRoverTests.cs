@@ -258,6 +258,82 @@ namespace Tests
         }
 
 
+        [Test]
+        public void GridWrapsYAxisWhenMovingOffTheEdge()
+        {
+
+            subject.Back();
+
+            Assert.AreEqual(100, subject.GetPosition().Y);
+
+            subject.Forwards();
+
+            Assert.AreEqual(0, subject.GetPosition().Y);
+
+            subject.Back();
+            subject.Back();
+
+            Assert.AreEqual(99, subject.GetPosition().Y);
+
+            subject.RightTurn();
+            subject.RightTurn();
+
+            //reverse over the 0 Y line
+            subject.Back();
+            subject.Back();
+
+            Assert.AreEqual(1, subject.GetPosition().Y);
+
+            subject = new Rover();
+
+            Assert.AreEqual(0, subject.GetPosition().X);
+            Assert.AreEqual(0, subject.GetPosition().Y);
+            Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
+
+
+            subject.RightTurn();
+            subject.RightTurn();
+
+            Assert.AreEqual(Compass.South, subject.GetPosition().CardinalPoint);
+
+            subject.Forwards();
+
+            Assert.AreEqual(100, subject.GetPosition().Y);
+
+
+
+        }
+
+        [Test]
+        public void GridWrapsXAxis()
+        {
+
+            //test back and fowards over X axis
+
+            subject.LeftTurn();
+
+            subject.Forwards();
+            //can go forward over the 0 X from East to West
+            Assert.AreEqual(100, subject.GetPosition().X);
+
+            //go backwards over x axis from West to East
+            subject.Back();
+
+            Assert.AreEqual(0, subject.GetPosition().X);
+
+            subject.Forwards();
+            //can go forward over the 0 X
+            Assert.AreEqual(100, subject.GetPosition().X);
+
+            subject.RightTurn();
+            subject.RightTurn();
+
+            //cross forwards over X axis from West to East
+            subject.Forwards();
+
+
+
+        }
 
     }
 }

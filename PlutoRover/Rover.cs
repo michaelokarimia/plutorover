@@ -5,10 +5,12 @@ namespace PlutoRover
     public class Rover
     {
         private Position position;
+        private Grid grid;
 
         public Rover()
         {
             position = new Position(0, 0, Compass.North);
+            grid = new Grid(100, 100);
         }
 
         public Position GetPosition()
@@ -21,16 +23,16 @@ namespace PlutoRover
             switch (position.CardinalPoint)
             {
                 case Compass.North:
-                    position.Y = position.Y + 1;
+                    position.Y = grid.North(position.Y);
                     break;
                 case Compass.East:
                     position.X = position.X + 1;
                     break;
                 case Compass.South:
-                    position.Y = position.Y - 1;
+                    position.Y = grid.South(position.Y);
                     break;
                 case Compass.West:
-                    position.X = position.X - 1;
+                    position.X = grid.West(position.X);
                     break;
             }
             
@@ -41,16 +43,16 @@ namespace PlutoRover
             switch (position.CardinalPoint)
             {
                 case Compass.North:
-                    position.Y = position.Y - 1;
+                    position.Y = grid.South(position.Y);
                     break;
                 case Compass.East:
                     position.X = position.X - 1;
                     break;
                 case Compass.South:
-                    position.Y = position.Y + 1;
+                    position.Y = grid.North(position.Y);
                     break;
                 case Compass.West:
-                    position.X = position.X + 1;
+                    position.X = grid.East(position.X);
                     break;
             }
 
