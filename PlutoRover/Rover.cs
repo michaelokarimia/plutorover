@@ -15,5 +15,10 @@ namespace PlutoRover
         {
             return position;
         }
+
+        public void F()
+        {
+            position.Y = position.Y + 1;
+        }
     }
 }
