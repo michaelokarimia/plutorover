@@ -39,7 +39,25 @@ namespace Tests
             Assert.AreNotEqual(subject.GetPosition().Y, expectedPosistion.Y);
 
 
-            subject.F();
+            subject.Forwards();
+
+
+            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
+            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+        }
+
+        [Test]
+        public void RoverMovesBackwardsWhenCommanded()
+        {
+
+            Position expectedPosistion = new Position(0, 0, Compass.North);
+
+            subject.Forwards();
+            Assert.AreEqual(subject.GetPosition().Y, 1);
+
+            subject.Back();
+            
 
 
             Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);

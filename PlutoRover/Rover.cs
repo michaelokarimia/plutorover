@@ -16,9 +16,14 @@ namespace PlutoRover
             return position;
         }
 
-        public void F()
+        public void Forwards()
         {
             position.Y = position.Y + 1;
+        }
+
+        public void Back()
+        {
+            position.Y = position.Y - 1;
         }
     }
 }
