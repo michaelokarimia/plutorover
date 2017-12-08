@@ -129,5 +129,23 @@ namespace Tests
             Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
             Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
         }
+
+        [TestCase(Compass.North, 0)]
+        [TestCase(Compass.West, 1)]
+        [TestCase(Compass.South, 2)]
+        [TestCase(Compass.East, 3)]
+        [TestCase(Compass.North, 4)]
+        public void LeftTurnTests(Compass expected, int timeToTurnLeft)
+        {
+
+            for(int i = 0; i< timeToTurnLeft; i++)
+            {
+                subject.LeftTurn();
+            }
+
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expected);
+            Assert.AreEqual(subject.GetPosition().X, 0);
+            Assert.AreEqual(subject.GetPosition().Y, 0);
+        }
     }
 }

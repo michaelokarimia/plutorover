@@ -45,5 +45,24 @@ namespace PlutoRover
 
             }
         }
+
+        public void LeftTurn()
+        {
+            switch(position.CardinalPoint)
+            {
+                case Compass.North:
+                    position.CardinalPoint = Compass.West;
+                    break;
+                case Compass.West:
+                    position.CardinalPoint = Compass.South;
+                    break;
+                case Compass.South:
+                    position.CardinalPoint = Compass.East;
+                    break;
+                case Compass.East:
+                    position.CardinalPoint = Compass.North;
+                    break;
+            }
+        }
     }
 }
