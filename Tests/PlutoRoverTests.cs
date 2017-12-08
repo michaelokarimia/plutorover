@@ -58,77 +58,30 @@ namespace Tests
 
             subject.Back();
 
-
-
             Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
             Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
             Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
         }
 
 
-        [Test]
-        public void RightCommandTurnsRover90DegreesToTheRight()
+        [TestCase(Compass.North, 0)]
+        [TestCase(Compass.East, 1)]
+        [TestCase(Compass.South, 2)]
+        [TestCase(Compass.West, 3)]
+        [TestCase(Compass.North, 4)]
+        public void RightTurnTests(Compass expected, int rightturnCount)
         {
-            Position expectedPosistion = new Position(0, 0, Compass.East);
 
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+            for (int i = 0; i < rightturnCount; i++)
+            {
+                subject.RightTurn();
+            }
 
-            subject.RightTurn();
-
-            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
-            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
+            Assert.AreEqual(subject.GetPosition().CardinalPoint, expected);
+            Assert.AreEqual(subject.GetPosition().X, 0);
+            Assert.AreEqual(subject.GetPosition().Y, 0);
         }
 
-        [Test]
-        public void TwoRightTurnsPointTheRoverToTheSouth()
-        {
-            Position expectedPosistion = new Position(0, 0, Compass.South);
-
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
-
-            subject.RightTurn();
-            subject.RightTurn();
-
-            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
-            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
-
-        }
-
-        [Test]
-        public void ThreeRightTurnsPointTheRoverToTheWest()
-        {
-            Position expectedPosistion = new Position(0, 0, Compass.West);
-
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
-
-            subject.RightTurn();
-            subject.RightTurn();
-            subject.RightTurn();
-
-            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
-            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
-
-        }
-
-        [Test]
-        public void FourTurnsRightPointRoverBackToNorth()
-        {
-            Position expectedPosistion = new Position(0, 0, Compass.North);
-
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
-
-            subject.RightTurn();
-            subject.RightTurn();
-            subject.RightTurn();
-            subject.RightTurn();
-
-            Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
-            Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
-        }
 
         [TestCase(Compass.North, 0)]
         [TestCase(Compass.West, 1)]
