@@ -177,5 +177,57 @@ namespace Tests
         }
 
 
+        [Test]
+        public void CanMoveForwardsInASquareAllDirectionsTurningLeft()
+        {
+            subject.Forwards();
+            subject.Forwards();
+            subject.RightTurn();
+
+            subject.Forwards();
+            subject.Forwards();
+            
+            //should be
+
+
+            Assert.AreEqual(2, subject.GetPosition().X);
+            Assert.AreEqual(2, subject.GetPosition().Y);
+            Assert.AreEqual(Compass.East, subject.GetPosition().CardinalPoint);
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.LeftTurn();
+
+            Assert.AreEqual(2, subject.GetPosition().Y);
+            Assert.AreEqual(4, subject.GetPosition().X);
+            Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.LeftTurn();
+
+            Assert.AreEqual(4, subject.GetPosition().Y);
+            Assert.AreEqual(4, subject.GetPosition().X);
+            Assert.AreEqual(Compass.West, subject.GetPosition().CardinalPoint);
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.LeftTurn();
+
+            Assert.AreEqual(4, subject.GetPosition().Y);
+            Assert.AreEqual(2, subject.GetPosition().X);
+            Assert.AreEqual(Compass.South, subject.GetPosition().CardinalPoint);
+
+            subject.Forwards();
+            subject.Forwards();
+            subject.LeftTurn();
+            subject.LeftTurn();
+
+            Assert.AreEqual(2, subject.GetPosition().Y);
+            Assert.AreEqual(2, subject.GetPosition().X);
+            Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
+
+        }
+
     }
 }
