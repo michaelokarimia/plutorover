@@ -7,21 +7,37 @@ namespace PlutoRover
     {
         private readonly int yLimit;
         private readonly int xLimit;
+        private int[,] map;
 
         public Grid(int maxYLimit, int maxXLimit)
         {
             yLimit = maxYLimit;
             xLimit = maxXLimit;
+
+            map = new int[100,100] ;
+
         }
 
-        public int North(int currentYPosition)
+        public int North(Position currentYPosition)
         {
-            if(currentYPosition + 1 == yLimit)
+            var yCoOrd = -1;
+
+            if (currentYPosition.Y + 1 == yLimit)
             {
-                return 0;
+                yCoOrd = 0;
+            }
+            else
+            {
+                yCoOrd = currentYPosition.Y + 1;
             }
 
-            return currentYPosition + 1;
+            if(map[yCoOrd,currentYPosition.X] == 1)
+            {
+            
+                throw new ObstructionException("Can not move here, obstruction at this postion");
+            }
+
+            return yCoOrd;
         }
 
         public int East(int currentXPostion)
@@ -51,6 +67,9 @@ namespace PlutoRover
             return currentXPosition - 1;
         }
 
-       
+        public void SetObstruction(int X, int Y)
+        {
+            map[Y,X] = 1;
+        }
     }
 }

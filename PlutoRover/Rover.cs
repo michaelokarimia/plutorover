@@ -23,7 +23,7 @@ namespace PlutoRover
             switch (position.CardinalPoint)
             {
                 case Compass.North:
-                    position.Y = grid.North(position.Y);
+                    position.Y = grid.North(position);
                     break;
                 case Compass.East:
                     position.X = grid.East(position.X);
@@ -49,7 +49,7 @@ namespace PlutoRover
                     position.X = grid.West(position.X);
                     break;
                 case Compass.South:
-                    position.Y = grid.North(position.Y);
+                    position.Y = grid.North(position);
                     break;
                 case Compass.West:
                     position.X = grid.East(position.X);
