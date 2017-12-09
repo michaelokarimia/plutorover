@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PlutoRover
+﻿namespace PlutoRover
 
 {
     public class Grid
@@ -18,58 +16,77 @@ namespace PlutoRover
 
         }
 
-        public int North(Position currentYPosition)
+        public int North(Position currentPosition)
         {
-            var yCoOrd = -1;
-
-            if (currentYPosition.Y + 1 == yLimit)
+            if (currentPosition.Y + 1 == yLimit)
             {
-                yCoOrd = 0;
+                currentPosition.Y = 0;
             }
             else
             {
-                yCoOrd = currentYPosition.Y + 1;
+                currentPosition.Y = currentPosition.Y + 1;
             }
 
-            if(map[yCoOrd,currentYPosition.X] == 1)
+            CheckForObstruction(currentPosition);
+
+            return currentPosition.Y;
+        }
+       
+
+        public int East(Position position)
+        {
+            if (position.X + 1 == xLimit)
             {
-            
-                throw new ObstructionException("Can not move here, obstruction at this postion");
+                position.X = 0;
+            }
+            else
+            {
+                position.X = position.X + 1;
             }
 
-            return yCoOrd;
+            return position.X;
         }
 
-        public int East(int currentXPostion)
+        public int South(Position postion)
         {
-            if (currentXPostion + 1 == xLimit)
-                return 0;
-
-            return currentXPostion + 1;
-        }
-
-        public int South(int currentYPosition)
-        {
-            if(currentYPosition == 0)
+            if (postion.Y == 0)
             {
-                return yLimit - 1;
+                postion.Y = yLimit - 1;
+            }
+            else
+            {
+                postion.Y = postion.Y - 1;
             }
 
-            return currentYPosition - 1;
+            return postion.Y;
         }
 
-        public int West(int currentXPosition)
+        public int West(Position position)
         {
-            if(currentXPosition == 0)
+            if (position.X == 0)
             {
-                return xLimit - 1;
+                position.X = xLimit - 1;
             }
-            return currentXPosition - 1;
+            else
+            {
+                position.X = position.X - 1;
+            }
+
+            return position.X;
         }
 
         public void SetObstruction(int X, int Y)
         {
             map[Y,X] = 1;
+        }
+
+        private void CheckForObstruction(Position currentPos)
+        {
+            if (map[currentPos.Y, currentPos.X] == 1)
+            {
+
+                throw new ObstructionException("Can not move here, obstruction at this postion");
+            }
         }
     }
 }

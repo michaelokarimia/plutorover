@@ -24,19 +24,19 @@ namespace Tests
         [Test]
         public void SouthAt0YAxisWrapsTo99()
         {
-            Assert.AreEqual(99, subject.South(0));
+            Assert.AreEqual(99, subject.South(new Position (0,0)));
         }
 
         [Test]
         public void WestAt0XAxisWrapsAt99()
         {
-            Assert.AreEqual(99, subject.West(0));
+            Assert.AreEqual(99, subject.West(new Position(0,0)));
         }
 
         [Test]
         public void EastAt99XAxisWrapsTo0()
         {
-            Assert.AreEqual(0, subject.East(99));
+            Assert.AreEqual(0, subject.East(new Position(99, 0)));
         }
 
         [Test]
@@ -45,6 +45,21 @@ namespace Tests
             subject.SetObstruction(0, 1);
 
             Assert.Throws<ObstructionException>(() => subject.North(new Position(0,0)));
+
+        }
+
+        public void ThrowsObstructionExceptionIfRoverAttemptsToMoveOntoObstruction()
+        {
+            subject.SetObstruction(1, 1);
+
+            Assert.Throws<ObstructionException>(() => subject.North(new Position(1, 0)));
+
+            Assert.Throws<ObstructionException>(() => subject.East(new Position(0, 1)));
+
+            Assert.Throws<ObstructionException>(() => subject.South(new Position(1, 2)));
+            
+            Assert.Throws<ObstructionException>(() => subject.West(new Position(2, 1)));
+            
 
         }
 
