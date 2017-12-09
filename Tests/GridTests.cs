@@ -18,7 +18,7 @@ namespace Tests
         [Test]
         public void NorthAt99YAxisWrapsTo0()
         {
-            Assert.AreEqual(0, subject.North(new Position(0,99,Compass.North)));
+            Assert.AreEqual(0, subject.North(new Position(0,99)));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Tests
         {
             subject.SetObstruction(0, 1);
 
-            Assert.Throws<ObstructionException>(() => subject.North(new Position(0,0,Compass.North)));
+            Assert.Throws<ObstructionException>(() => subject.North(new Position(0,0)));
 
         }
 

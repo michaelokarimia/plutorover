@@ -23,18 +23,18 @@ namespace Tests
         public void RoverReturnsPositionInDefaultStartPoint()
         {
 
-            Position expectedPosition = new Position(0, 0, Compass.North);
+            Position expectedPosition = new Position(0, 0);
 
             Assert.That(subject.GetPosition().X, Is.EqualTo(expectedPosition.X));
             Assert.That(subject.GetPosition().Y, Is.EqualTo(expectedPosition.Y));
-            Assert.That(subject.GetPosition().CardinalPoint, Is.EqualTo(expectedPosition.CardinalPoint));
+            Assert.That(subject.CardinalPoint, Is.EqualTo(Compass.North));
         }
 
         [Test]
         public void RoverMovesForwardWhenCommanded()
         {
 
-            Position expectedPosistion = new Position(0, 1, Compass.North);
+            Position expectedPosistion = new Position(0, 1);
 
             Assert.AreNotEqual(subject.GetPosition().Y, expectedPosistion.Y);
 
@@ -43,7 +43,7 @@ namespace Tests
 
 
             Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
+            Assert.AreEqual(subject.CardinalPoint, Compass.North);
             Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
         }
 
@@ -51,7 +51,7 @@ namespace Tests
         public void RoverMovesBackwardsWhenCommanded()
         {
 
-            Position expectedPosistion = new Position(0, 0, Compass.North);
+            Position expectedPosistion = new Position(0, 0);
 
             subject.Forwards();
             Assert.AreEqual(subject.GetPosition().Y, 1);
@@ -59,7 +59,7 @@ namespace Tests
             subject.Back();
 
             Assert.AreEqual(subject.GetPosition().X, expectedPosistion.X);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expectedPosistion.CardinalPoint);
+            Assert.AreEqual(subject.CardinalPoint, Compass.North);
             Assert.AreEqual(subject.GetPosition().Y, expectedPosistion.Y);
         }
 
@@ -77,7 +77,7 @@ namespace Tests
                 subject.RightTurn();
             }
 
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expected);
+            Assert.AreEqual(subject.CardinalPoint, expected);
             Assert.AreEqual(subject.GetPosition().X, 0);
             Assert.AreEqual(subject.GetPosition().Y, 0);
         }
@@ -96,7 +96,7 @@ namespace Tests
                 subject.LeftTurn();
             }
 
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expected);
+            Assert.AreEqual(subject.CardinalPoint, expected);
             Assert.AreEqual(subject.GetPosition().X, 0);
             Assert.AreEqual(subject.GetPosition().Y, 0);
         }
@@ -108,7 +108,7 @@ namespace Tests
         [TestCase(Compass.East, 1, 2)]
         [TestCase(Compass.South, 1, 3)]
         [TestCase(Compass.West, 1, 4)]
-        public void TurnsTests(Compass expected, int leftTurnCount, int rightTurnCount)
+        public void TurnsTests(Compass expectedDirection, int leftTurnCount, int rightTurnCount)
         {
 
             for (int i = 0; i < leftTurnCount; i++)
@@ -121,7 +121,7 @@ namespace Tests
                 subject.RightTurn();
             }
 
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, expected);
+            Assert.AreEqual(subject.CardinalPoint, expectedDirection);
             Assert.AreEqual(subject.GetPosition().X, 0);
             Assert.AreEqual(subject.GetPosition().Y, 0);
         }
@@ -138,7 +138,7 @@ namespace Tests
 
             Assert.AreEqual(subject.GetPosition().X, 2);
             Assert.AreEqual(subject.GetPosition().Y, 2);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.East);
+            Assert.AreEqual(subject.CardinalPoint, Compass.East);
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace Tests
 
             Assert.AreEqual(subject.GetPosition().X, 2);
             Assert.AreEqual(subject.GetPosition().Y, 2);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.South);
+            Assert.AreEqual(subject.CardinalPoint, Compass.South);
 
             subject.Forwards();
             subject.Forwards();
@@ -164,7 +164,7 @@ namespace Tests
 
             Assert.AreEqual(subject.GetPosition().Y, 0);
             Assert.AreEqual(subject.GetPosition().X, 2);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.West);
+            Assert.AreEqual(subject.CardinalPoint, Compass.West);
 
             subject.Forwards();
             subject.Forwards();
@@ -172,7 +172,7 @@ namespace Tests
 
             Assert.AreEqual(subject.GetPosition().Y, 0);
             Assert.AreEqual(subject.GetPosition().X, 0);
-            Assert.AreEqual(subject.GetPosition().CardinalPoint, Compass.North);
+            Assert.AreEqual(subject.CardinalPoint, Compass.North);
 
         }
 
@@ -189,7 +189,7 @@ namespace Tests
             
             Assert.AreEqual(2, subject.GetPosition().X);
             Assert.AreEqual(2, subject.GetPosition().Y);
-            Assert.AreEqual(Compass.East, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.East, subject.CardinalPoint);
 
             subject.Forwards();
             subject.Forwards();
@@ -197,7 +197,7 @@ namespace Tests
 
             Assert.AreEqual(2, subject.GetPosition().Y);
             Assert.AreEqual(4, subject.GetPosition().X);
-            Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.North, subject.CardinalPoint);
 
             subject.Forwards();
             subject.Forwards();
@@ -205,7 +205,7 @@ namespace Tests
 
             Assert.AreEqual(4, subject.GetPosition().Y);
             Assert.AreEqual(4, subject.GetPosition().X);
-            Assert.AreEqual(Compass.West, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.West, subject.CardinalPoint);
 
             subject.Forwards();
             subject.Forwards();
@@ -213,7 +213,7 @@ namespace Tests
 
             Assert.AreEqual(4, subject.GetPosition().Y);
             Assert.AreEqual(2, subject.GetPosition().X);
-            Assert.AreEqual(Compass.South, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.South, subject.CardinalPoint);
 
             subject.Forwards();
             subject.Forwards();
@@ -222,7 +222,7 @@ namespace Tests
 
             Assert.AreEqual(2, subject.GetPosition().Y);
             Assert.AreEqual(2, subject.GetPosition().X);
-            Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.North, subject.CardinalPoint);
 
         }
 
@@ -288,13 +288,13 @@ namespace Tests
             subject.LeftTurn();
             subject.LeftTurn();
 
-            Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.North, subject.CardinalPoint);
 
 
             subject.RightTurn();
             subject.RightTurn();
 
-            Assert.AreEqual(Compass.South, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.South, subject.CardinalPoint);
 
             subject.Forwards();
 
@@ -333,7 +333,7 @@ namespace Tests
 
 
             Assert.AreEqual(0, subject.GetPosition().X);
-            Assert.AreEqual(Compass.East, subject.GetPosition().CardinalPoint);
+            Assert.AreEqual(Compass.East, subject.CardinalPoint);
 
             //can reverse over X axis and wrap from 0 to 99
 

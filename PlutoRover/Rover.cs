@@ -6,10 +6,14 @@ namespace PlutoRover
     {
         private Position position;
         private Grid grid;
+        private Compass cardinalPoint;
+        public Compass CardinalPoint { get => cardinalPoint; internal set => cardinalPoint = value; }
+
 
         public Rover()
         {
-            position = new Position(0, 0, Compass.North);
+            cardinalPoint = Compass.North;
+            position = new Position(0, 0);
             grid = new Grid(100, 100);
         }
 
@@ -20,7 +24,7 @@ namespace PlutoRover
 
         public void Forwards()
         {
-            switch (position.CardinalPoint)
+            switch (cardinalPoint)
             {
                 case Compass.North:
                     position.Y = grid.North(position);
@@ -40,7 +44,7 @@ namespace PlutoRover
 
         public void Back()
         {
-            switch (position.CardinalPoint)
+            switch (cardinalPoint)
             {
                 case Compass.North:
                     position.Y = grid.South(position.Y);
@@ -60,19 +64,19 @@ namespace PlutoRover
 
         public void RightTurn()
         {
-            switch(position.CardinalPoint)
+            switch(cardinalPoint)
             {
                 case Compass.North:
-                    position.CardinalPoint = Compass.East;
+                    cardinalPoint = Compass.East;
                     break;
                 case Compass.East:
-                    position.CardinalPoint = Compass.South;
+                    cardinalPoint= Compass.South;
                     break;
                 case Compass.South:
-                    position.CardinalPoint = Compass.West;
+                    cardinalPoint = Compass.West;
                     break;
                 case Compass.West:
-                    position.CardinalPoint = Compass.North;
+                    cardinalPoint = Compass.North;
                     break;
 
             }
@@ -80,19 +84,19 @@ namespace PlutoRover
 
         public void LeftTurn()
         {
-            switch(position.CardinalPoint)
+            switch(cardinalPoint)
             {
                 case Compass.North:
-                    position.CardinalPoint = Compass.West;
+                    cardinalPoint = Compass.West;
                     break;
                 case Compass.West:
-                    position.CardinalPoint = Compass.South;
+                    cardinalPoint = Compass.South;
                     break;
                 case Compass.South:
-                    position.CardinalPoint = Compass.East;
+                    cardinalPoint = Compass.East;
                     break;
                 case Compass.East:
-                    position.CardinalPoint = Compass.North;
+                    cardinalPoint = Compass.North;
                     break;
             }
         }
