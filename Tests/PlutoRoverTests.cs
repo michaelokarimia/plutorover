@@ -264,7 +264,7 @@ namespace Tests
 
             subject.Back();
 
-            Assert.AreEqual(100, subject.GetPosition().Y);
+            Assert.AreEqual(99, subject.GetPosition().Y);
 
             subject.Forwards();
 
@@ -273,7 +273,7 @@ namespace Tests
             subject.Back();
             subject.Back();
 
-            Assert.AreEqual(99, subject.GetPosition().Y);
+            Assert.AreEqual(98, subject.GetPosition().Y);
 
             subject.RightTurn();
             subject.RightTurn();
@@ -282,12 +282,12 @@ namespace Tests
             subject.Back();
             subject.Back();
 
-            Assert.AreEqual(1, subject.GetPosition().Y);
-
-            subject = new Rover();
-
-            Assert.AreEqual(0, subject.GetPosition().X);
             Assert.AreEqual(0, subject.GetPosition().Y);
+            Assert.AreEqual(0, subject.GetPosition().X);
+
+            subject.LeftTurn();
+            subject.LeftTurn();
+
             Assert.AreEqual(Compass.North, subject.GetPosition().CardinalPoint);
 
 
@@ -298,7 +298,7 @@ namespace Tests
 
             subject.Forwards();
 
-            Assert.AreEqual(100, subject.GetPosition().Y);
+            Assert.AreEqual(99, subject.GetPosition().Y);
 
 
 
@@ -314,7 +314,7 @@ namespace Tests
 
             subject.Forwards();
             //can go forward over the 0 X from East to West
-            Assert.AreEqual(100, subject.GetPosition().X);
+            Assert.AreEqual(99, subject.GetPosition().X);
 
             //go backwards over x axis from West to East
             subject.Back();
@@ -323,7 +323,7 @@ namespace Tests
 
             subject.Forwards();
             //can go forward over the 0 X
-            Assert.AreEqual(100, subject.GetPosition().X);
+            Assert.AreEqual(99, subject.GetPosition().X);
 
             subject.RightTurn();
             subject.RightTurn();
@@ -332,6 +332,15 @@ namespace Tests
             subject.Forwards();
 
 
+            Assert.AreEqual(0, subject.GetPosition().X);
+            Assert.AreEqual(Compass.East, subject.GetPosition().CardinalPoint);
+
+            //can reverse over X axis and wrap from 0 to 99
+
+            subject.Back();
+
+
+            Assert.AreEqual(99, subject.GetPosition().X);
 
         }
 

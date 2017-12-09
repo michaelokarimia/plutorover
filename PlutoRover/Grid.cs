@@ -16,7 +16,7 @@ namespace PlutoRover
 
         public int North(int currentYPosition)
         {
-            if(currentYPosition + 1 >= yLimit)
+            if(currentYPosition + 1 == yLimit)
             {
                 return 0;
             }
@@ -26,7 +26,7 @@ namespace PlutoRover
 
         public int East(int currentXPostion)
         {
-            if (currentXPostion + 1 >= xLimit)
+            if (currentXPostion + 1 == xLimit)
                 return 0;
 
             return currentXPostion + 1;
@@ -34,9 +34,9 @@ namespace PlutoRover
 
         public int South(int currentYPosition)
         {
-            if(currentYPosition - 1 == -1)
+            if(currentYPosition == 0)
             {
-                return yLimit;
+                return yLimit - 1;
             }
 
             return currentYPosition - 1;
@@ -44,9 +44,9 @@ namespace PlutoRover
 
         public int West(int currentXPosition)
         {
-            if(currentXPosition - 1 == -1)
+            if(currentXPosition == 0)
             {
-                return xLimit;
+                return xLimit - 1;
             }
             return currentXPosition - 1;
         }

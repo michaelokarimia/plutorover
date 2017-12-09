@@ -21,27 +21,27 @@ namespace Tests
         }
 
         [Test]
-        public void NorthAt100YWrapsTo0()
+        public void NorthAt99YAxisWrapsTo0()
         {
             Assert.AreEqual(0, subject.North(99));
         }
 
         [Test]
-        public void SouthAt0Wraps100()
+        public void SouthAt0YAxisWrapsTo99()
         {
-            Assert.AreEqual(100, subject.South(0));
+            Assert.AreEqual(99, subject.South(0));
         }
 
         [Test]
-        public void WestAt0WrapsAt100()
+        public void WestAt0XAxisWrapsAt99()
         {
-            Assert.AreEqual(100, subject.West(0));
+            Assert.AreEqual(99, subject.West(0));
         }
 
         [Test]
-        public void EastAt100WrapsTo0()
+        public void EastAt99XAxisWrapsTo0()
         {
-            Assert.AreEqual(0, subject.East(100));
+            Assert.AreEqual(0, subject.East(99));
         }
 
     }
