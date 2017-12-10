@@ -27,16 +27,16 @@ namespace PlutoRover
             switch (direction)
             {
                 case Compass.North:
-                    position.Y = grid.North(position);
+                    position = grid.North(position);
                     break;
                 case Compass.East:
-                    position.X = grid.East(position);
+                    position = grid.East(position);
                     break;
                 case Compass.South:
-                    position.Y = grid.South(position);
+                    position = grid.South(position);
                     break;
                 case Compass.West:
-                    position.X = grid.West(position);
+                    position = grid.West(position);
                     break;
             }
             
@@ -47,16 +47,16 @@ namespace PlutoRover
             switch (direction)
             {
                 case Compass.North:
-                    position.Y = grid.South(position);
+                    position = grid.South(position);
                     break;
                 case Compass.East:
-                    position.X = grid.West(position);
+                    position = grid.West(position);
                     break;
                 case Compass.South:
-                    position.Y = grid.North(position);
+                    position = grid.North(position);
                     break;
                 case Compass.West:
-                    position.X = grid.East(position);
+                    position = grid.East(position);
                     break;
             }
 

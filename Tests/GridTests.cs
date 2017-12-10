@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using PlutoRover;
-using System;
 
 namespace Tests
 {
@@ -18,25 +17,25 @@ namespace Tests
         [Test]
         public void NorthAt99YAxisWrapsTo0()
         {
-            Assert.AreEqual(0, subject.North(new Position(0,99)));
+            Assert.AreEqual(new Position(0, 0), subject.North(new Position(0,99)));
         }
 
         [Test]
         public void SouthAt0YAxisWrapsTo99()
         {
-            Assert.AreEqual(99, subject.South(new Position (0,0)));
+            Assert.AreEqual(new Position(0,99), subject.South(new Position(0,0)));
         }
 
         [Test]
         public void WestAt0XAxisWrapsAt99()
         {
-            Assert.AreEqual(99, subject.West(new Position(0,0)));
+            Assert.AreEqual(new Position(99,0), subject.West(new Position(0,0)));
         }
 
         [Test]
         public void EastAt99XAxisWrapsTo0()
         {
-            Assert.AreEqual(0, subject.East(new Position(99, 0)));
+            Assert.AreEqual(new Position(0,0), subject.East(new Position(99, 0)));
         }
 
         [Test]
@@ -48,6 +47,7 @@ namespace Tests
 
         }
 
+        [Test]
         public void ThrowsObstructionExceptionIfRoverAttemptsToMoveOntoObstruction()
         {
             subject.SetObstruction(1, 1);

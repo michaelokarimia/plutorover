@@ -1,6 +1,6 @@
 ﻿namespace PlutoRover
 {
-    public class Position
+    public struct Position
     {
         private int x;
         private int y;

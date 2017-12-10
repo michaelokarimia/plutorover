@@ -16,63 +16,78 @@
 
         }
 
-        public int North(Position currentPosition)
+        public Position North(Position startPosition)
         {
-            if (currentPosition.Y + 1 == yLimit)
+            Position endPosition;
+
+            if (startPosition.Y + 1 == yLimit)
             {
-                currentPosition.Y = 0;
+                endPosition = new Position(startPosition.X, 0);
             }
             else
             {
-                currentPosition.Y = currentPosition.Y + 1;
+                endPosition = new Position(startPosition.X, startPosition.Y + 1);
             }
 
-            CheckForObstruction(currentPosition);
+            CheckForObstruction(endPosition);
 
-            return currentPosition.Y;
+            return endPosition;
         }
        
 
-        public int East(Position position)
+        public Position East(Position currentPosition)
         {
-            if (position.X + 1 == xLimit)
+            Position endPosition;
+
+            if (currentPosition.X + 1 == xLimit)
             {
-                position.X = 0;
+                endPosition = new Position(0, currentPosition.Y);
             }
             else
             {
-                position.X = position.X + 1;
+                endPosition = new Position(currentPosition.X + 1, currentPosition.Y);
             }
 
-            return position.X;
+            CheckForObstruction(endPosition);
+
+            return endPosition;
         }
 
-        public int South(Position postion)
+        public Position South(Position postion)
         {
+            Position endPosition;
+
             if (postion.Y == 0)
             {
-                postion.Y = yLimit - 1;
+                endPosition = new Position(postion.X,  yLimit - 1);
             }
             else
             {
-                postion.Y = postion.Y - 1;
+                endPosition = new Position(postion.X, postion.Y - 1);
             }
 
-            return postion.Y;
+            CheckForObstruction(endPosition);
+
+            return endPosition;
+
         }
 
-        public int West(Position position)
+        public Position West(Position currentPostion)
         {
-            if (position.X == 0)
+            Position endPosition;
+
+            if (currentPostion.X == 0)
             {
-                position.X = xLimit - 1;
+                endPosition = new Position(xLimit - 1, currentPostion.Y);
             }
             else
             {
-                position.X = position.X - 1;
+                endPosition = new Position(currentPostion.X - 1, currentPostion.Y);
             }
 
-            return position.X;
+            CheckForObstruction(endPosition);
+
+            return endPosition;
         }
 
         public void SetObstruction(int X, int Y)
@@ -80,11 +95,10 @@
             map[Y,X] = 1;
         }
 
-        private void CheckForObstruction(Position currentPos)
+        private void CheckForObstruction(Position current)
         {
-            if (map[currentPos.Y, currentPos.X] == 1)
+            if (map[current.Y, current.X] == 1)
             {
-
                 throw new ObstructionException("Can not move here, obstruction at this postion");
             }
         }
